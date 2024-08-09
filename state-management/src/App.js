@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <UseState name="UseState" />
-      <ClassState name="Class State" />
+      <ClassState name="ClassState" />
     </div>
   );
 }
