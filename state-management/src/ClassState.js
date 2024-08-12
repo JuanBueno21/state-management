@@ -32,7 +32,7 @@ class ClassState extends React.Component {
         console.log("terminando validacion")
       }, 3000);
     }
-  }
+  } 
 
   render() {
     return (
