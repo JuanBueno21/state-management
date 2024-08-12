@@ -3,24 +3,38 @@ import React from "react";
 const SECURITY_CODE = "paradigma";
 
 function UseState({ name }) {
+  const [state, setState] = React.useState({
+    value: "",
+    error: false,
+    loading: false,
+  });
+
   const [value, setValue] = React.useState("");
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  console.log(value);
+  console.log(state);
 
   React.useEffect(() => {
     console.log("empezando efecto")
 
-    if (!!loading) {
+    if (!!state.loading) {
       setTimeout(() => {
         console.log("haciendo validacion")
 
-        if (value === SECURITY_CODE) {
-          setLoading(false);
+        if (state.value === SECURITY_CODE) {
+          setState({
+            ...state,
+            error: false,
+            loading: false,
+          });
         } else {
-          setError(true);
-          setLoading(false);
+          setState({
+            ...state,
+            error: true,
+            loading: false,
+          })
+
         }
 
         console.log("terminando validacion")
@@ -28,29 +42,35 @@ function UseState({ name }) {
     }
 
     console.log("terminando efecto")
-  }, [loading]);
+  }, [state.loading]);
 
   return (
     <div>
       <h2>Eliminar {name}</h2>
       <p>Por favor escribe el codigo de seguridad.</p>
 
-      {error && (
+      {(state.error) && (
         <p>Error: el codigo es  incorrecto</p>
       )}
 
-      {loading && (
+      {(state.loading) && (
         <p>Cargando...</p>
       )}
 
       <input placeholder="Codigo de seguridad"
-        value={value}
+        value={state.value}
         onChange={(event) => {
-          setValue(event.target.value);
+          setState({
+            ...state,
+            value: event.target.value,
+          })
         }} />
       <button onClick={() => {
-        setLoading(true)
-        setError(false)
+        // setError(false) // ESTE FUE 
+        setState({
+          ...state,
+          loading: true,
+        })
       }} >
         Comprobar </button>
       <hr></hr>
