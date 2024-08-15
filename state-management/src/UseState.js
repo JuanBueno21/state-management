@@ -58,9 +58,9 @@ function UseState({ name }) {
     });
   }
 
-  const [value, setValue] = React.useState("");
-  const [error, setError] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  // const [value, setValue] = React.useState("");
+  // const [error, setError] = React.useState(false);
+  // const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     console.log("empezando efecto");

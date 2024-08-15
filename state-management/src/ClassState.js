@@ -20,18 +20,18 @@ class ClassState extends React.Component {
     if (!!this.state.loading) {
       setTimeout(() => {
         console.log("haciendo validacion")
-  
+
         if (SECURITY_CODE === this.state.value) {
-          this.setState({error: false , loading: false});
+          this.setState({ error: false, loading: false });
         } else {
-          this.setState({error: true , loading: false});
+          this.setState({ error: true, loading: false });
         }
-  
-  
+
+
         console.log("terminando validacion")
       }, 3000);
     }
-  } 
+  }
 
   render() {
     return (
@@ -40,21 +40,23 @@ class ClassState extends React.Component {
 
         <p>Por favor escribe el codigo de  seguridad.</p>
 
-        {(this.state.error && !this.state.loading ) && (
+        {(this.state.error && !this.state.loading) && (
           <p>Error: el codigo es incorrecto</p>
         )}
         {this.state.loading && (
           <Loading />
         )}
 
-        <input placeholder="Codigo de seguridad" 
-        value={this.state.value}
-        onChange={(event) => {
-          this.setState({value: event.target.value})
-        }}
+        <input placeholder="Codigo de seguridad"
+          value={this.state.value}
+          onChange={(event) => {
+            this.setState({ value: event.target.value })
+          }}
         />
         <button onClick={() => this.setState({ loading: true })}
         >Comprobar</button>
+
+        <hr></hr>
       </div>
     )
   }
